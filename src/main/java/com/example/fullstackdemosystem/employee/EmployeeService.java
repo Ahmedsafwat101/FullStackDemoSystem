@@ -40,8 +40,11 @@ public class EmployeeService {
     }
 
     //TODO() delete Employee by ID
-    public EmployeeResponseDTO deleteEmployee(Long id) {
-        return null;
+    public EmployeeResponseDTO deleteEmployee(Long emp_id) throws NoSuchObjectException {
+        Optional<Employee> employee = employeeRepository.findById(emp_id);
+        if (!employee.isPresent()) throw new NoSuchObjectException("Employee not found");
+        employeeRepository.delete(employee.get());
+        return employeeMapper.EmployeeToEmployeeDto(employee.get());
     }
 
     //TODO() find Employee by ID

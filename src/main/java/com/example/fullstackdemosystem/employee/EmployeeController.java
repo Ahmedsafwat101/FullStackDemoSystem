@@ -44,4 +44,11 @@ public class EmployeeController {
         return  ResponseEntity.ok().body(employeeResponseDTO);
 
     }
+
+    @DeleteMapping("delete/{emp_id}")
+    public ResponseEntity<EmployeeResponseDTO> deleteEmployee (@PathVariable Long emp_id) throws  NoSuchObjectException {
+        EmployeeResponseDTO employeeResponseDTO =  employeeService.deleteEmployee(emp_id);
+        return  ResponseEntity.ok().body(employeeResponseDTO);
+
+    }
 }

@@ -23,13 +23,8 @@ repositories {
 }
 
 dependencies {
-
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
     def lombokVersion = '1.18.12'
-
-
-
-
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.googlecode.flyway:flyway-core:2.3.1'

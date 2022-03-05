@@ -6,6 +6,7 @@ import com.example.fullstackdemosystem.employee.dto.EmployeeUpdateDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.rmi.NoSuchObjectException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +30,9 @@ public class EmployeeService {
     }
 
     //TODO() update Employee by ID
-    public EmployeeResponseDTO updateEmployee(EmployeeUpdateDTO updateDTO, Long emp_id) throws NoSuchFieldException {
+    public EmployeeResponseDTO updateEmployee(EmployeeUpdateDTO updateDTO, Long emp_id) throws NoSuchObjectException {
         Optional<Employee> employee = employeeRepository.findById(emp_id);
-        if (!employee.isPresent()) throw new NoSuchFieldException();
+        if (!employee.isPresent()) throw new NoSuchObjectException("Employee not found");
         employeeMapper.updateEmployee(updateDTO, employee.get());
         employeeRepository.save(employee.get());
         return employeeMapper.EmployeeToEmployeeDto(employee.get());
@@ -43,8 +44,10 @@ public class EmployeeService {
     }
 
     //TODO() find Employee by ID
-    public EmployeeResponseDTO findEmployee(Long id) {
-        return null;
+    public EmployeeResponseDTO findEmployee(Long emp_id) throws NoSuchObjectException {
+        Optional<Employee> employee = employeeRepository.findById(emp_id);
+        if (!employee.isPresent()) throw new NoSuchObjectException("Employee not found");
+        return employeeMapper.EmployeeToEmployeeDto(employee.get());
     }
 
     //TODO() find All Employees

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.rmi.NoSuchObjectException;
 
 @RestController
 @AllArgsConstructor
@@ -16,6 +17,12 @@ public class EmployeeController {
 
    private EmployeeService employeeService;
 
+    @GetMapping("/{emp_id}")
+    public ResponseEntity<EmployeeResponseDTO> getEmployee(@PathVariable Long emp_id) throws  NoSuchObjectException {
+        EmployeeResponseDTO employeeResponseDTO =  employeeService.findEmployee(emp_id);
+        return  ResponseEntity.ok().body(employeeResponseDTO);
+
+    }
 
     @PostMapping("/add")
     public ResponseEntity<EmployeeResponseDTO> addEmployee(@Valid @RequestBody  AddEmployeeCommand employeeCommand){
@@ -24,9 +31,8 @@ public class EmployeeController {
 
     }
 
-
     @PutMapping("/update/{emp_id}")
-    public ResponseEntity<EmployeeResponseDTO> updateEmployee(@Valid @RequestBody EmployeeUpdateDTO updateDTO, @PathVariable Long emp_id) throws NoSuchFieldException {
+    public ResponseEntity<EmployeeResponseDTO> updateEmployee(@Valid @RequestBody EmployeeUpdateDTO updateDTO, @PathVariable Long emp_id) throws  NoSuchObjectException {
         EmployeeResponseDTO employeeResponseDTO =  employeeService.updateEmployee(updateDTO,emp_id);
         return  ResponseEntity.ok().body(employeeResponseDTO);
 

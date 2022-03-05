@@ -4,7 +4,7 @@ import com.googlecode.flyway.core.Flyway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.example.fullstackdemosystem")
+@SpringBootApplication
 public class FullStackDemoSystemApplication {
 
     public static void main(String[] args) {
@@ -13,5 +13,4 @@ public class FullStackDemoSystemApplication {
         flyway.migrate();
         SpringApplication.run(FullStackDemoSystemApplication.class, args);
     }
-
 }

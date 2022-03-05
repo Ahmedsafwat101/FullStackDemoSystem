@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.rmi.NoSuchObjectException;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -22,6 +23,12 @@ public class EmployeeController {
         EmployeeResponseDTO employeeResponseDTO =  employeeService.findEmployee(emp_id);
         return  ResponseEntity.ok().body(employeeResponseDTO);
 
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<EmployeeResponseDTO>> getEmployee() {
+        List<EmployeeResponseDTO> employeesResponseDTO =  employeeService.findAllEmployees();
+        return  ResponseEntity.ok().body(employeesResponseDTO);
     }
 
     @PostMapping("/add")

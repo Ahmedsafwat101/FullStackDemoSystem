@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -52,7 +53,8 @@ public class EmployeeService {
 
     //TODO() find All Employees
     public List<EmployeeResponseDTO> findAllEmployees() {
-        return null;
+        List<Employee> employees = employeeRepository.findAll();
+        return employees.stream().map(employeeMapper::EmployeeToEmployeeDto).collect(Collectors.toList());
     }
 
 

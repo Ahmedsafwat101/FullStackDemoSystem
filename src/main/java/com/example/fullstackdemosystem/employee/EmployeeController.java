@@ -1,6 +1,5 @@
 package com.example.fullstackdemosystem.employee;
 
-import com.example.fullstackdemosystem.employee.command.AddEmployeeCommand;
 import com.example.fullstackdemosystem.employee.dto.EmployeeResponseDTO;
 import com.example.fullstackdemosystem.employee.dto.EmployeeUpdateDTO;
 import lombok.AllArgsConstructor;
@@ -32,9 +31,9 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<EmployeeResponseDTO> addEmployee(@Valid @RequestBody  AddEmployeeCommand employeeCommand){
-        EmployeeResponseDTO employeeResponseDTO =  employeeService.addEmployee(employeeCommand);
-       return new ResponseEntity<>(employeeResponseDTO, HttpStatus.CREATED);
+    public ResponseEntity<String> addEmployee(@Valid @RequestBody  Employee employeeCommand){
+       employeeService.addEmployee(employeeCommand);
+       return new ResponseEntity<>("Employee is successfully added", HttpStatus.CREATED);
 
     }
 

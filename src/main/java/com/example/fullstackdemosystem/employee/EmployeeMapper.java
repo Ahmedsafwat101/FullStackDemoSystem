@@ -1,6 +1,5 @@
 package com.example.fullstackdemosystem.employee;
 
-import com.example.fullstackdemosystem.employee.command.AddEmployeeCommand;
 import com.example.fullstackdemosystem.employee.dto.EmployeeResponseDTO;
 import com.example.fullstackdemosystem.employee.dto.EmployeeUpdateDTO;
 import org.mapstruct.*;
@@ -9,13 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface EmployeeMapper {
-
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "title", target = "title")
-    @Mapping(source = "phone", target = "phoneNumber")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "imageURL", target = "imageURL")
-    Employee EmployeeCommandToEmployee(AddEmployeeCommand employeeCommand);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
